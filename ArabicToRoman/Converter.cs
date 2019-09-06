@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,8 +39,8 @@ namespace ArabicToRoman
                     }
                     else if(shouldBePrefixed(arabicNumber, symbol))
                     {
-                        result += symbol.Prefix;
-                        arabicNumber += symbols.First(o => o.Roman.Equals(symbol.Prefix)).Arabic;
+                        result += prefixRomanNumber(ref arabicNumber, symbol);
+                        //arabicNumber += symbols.First(o => o.Roman.Equals(symbol.Prefix)).Arabic;
                         isPrefixed = true;
                     }
                     else if(arabicNumber < symbol.Arabic)
@@ -61,9 +62,17 @@ namespace ArabicToRoman
 
         }
 
+        private string prefixRomanNumber(ref int arabicNumber, Symbol symbol)
+        {
+            var difference = symbol.Arabic - arabicNumber;
+            var result = symbol.Prefix;
+            arabicNumber += symbols.First(o => o.Roman == symbol.Prefix).Arabic;
+            return result;
+        }
+
         private static bool shouldBePrefixed(int arabicNumber, Symbol symbol)
         {
-            return (float)arabicNumber / (float)symbol.Arabic >= symbol.Fraction;
+            return Decimal.Divide(arabicNumber, symbol.Arabic) >= (decimal) symbol.Fraction;
         }
     }
 }
