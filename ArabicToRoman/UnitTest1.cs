@@ -27,6 +27,9 @@ namespace ArabicToRoman
         [InlineData(800, "DCCC")]
         [InlineData(900, "CM")]
         [InlineData(1000, "M")]
+        [InlineData(27, "XXVII")]   
+        [InlineData(89, "LXXXIX")]              
+        [InlineData(400, "CD")]      
         public void Test1(int arabic, string roman)
         {
             var result = _unitTest.Convert(arabic);
