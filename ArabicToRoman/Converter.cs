@@ -14,7 +14,7 @@ namespace ArabicToRoman
             {
                 new Symbol(1, "I", 1, "None"),
                 new Symbol(5, "V", 0.8, "I"),
-                new Symbol(10, "X", 0.8, "I"),
+                new Symbol(10, "X", 0.9, "I"),
                 new Symbol(50, "L", 0.8, "X"),
                 new Symbol(100, "C", 0.9, "X"),
                 new Symbol(500, "D", 0.8, "C"),
