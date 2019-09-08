@@ -22,7 +22,33 @@ namespace ArabicToRoman
             };
         }
         
-        public string Convert(int arabicNumber)
+        public int ConvertFromRomanToArabic(string roman)
+        {
+            var result = 0;
+            var symbolList = roman.ToList().ConvertAll(o => symbols.First(s => s.Roman.Contains(o)));
+            var formerSymbol = symbolList.First();
+            foreach (var symbol in symbolList.Skip(1))
+            {
+                if (symbol.Arabic <= formerSymbol.Arabic)
+                {
+                    result += formerSymbol.Arabic;
+                }
+                else
+                {
+                    result -= formerSymbol.Arabic;
+                }
+
+                formerSymbol = symbol;
+            }
+
+            result += formerSymbol.Arabic;
+            
+
+            return result;
+
+        }
+        
+        public string ConvertFromArabicToRoman(int arabicNumber)
         {
             var result = "";
             
